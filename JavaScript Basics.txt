@@ -1,0 +1,120 @@
+JavaScript Data Type's:
+
+Primitive Data Type's
+1) String,
+2) Number,
+3) Boolean,
+4) Undefined,
+5) Null,
+6) BigInt ----> This One is used to store the value of doesn't store by the number data type more than his capacity,
+7) Symbol ----> This one is used to generate the Unique Number value when invoke the symbol() data type .
+
+Non-Premitive Data Type's:
+1) Object.
+-----------------------------------------------------------------------------------------------------------------
+
+JavaScript Operators:
+
+1) Assignment Operator,
+2) Arithmatic Operator,
+3) Comparision Operator,
+4) Logical Operator,
+5) String Operators,
+6) Ternary Operator.
+-----------------------------------------------------------------------------------------------------------------
+
+Type Conversion:
+1) Implicit Conversion --> also known as type coercion where javaScript itself will automatically convert the type.
+2) Explicit Conversion --> Where you manually convert the type.
+
+Implicit Conversion:
+numericString type --> if you add the string with numeric the javaScript automatically convert the number into String.
+Ex: --> console.log(2 + '3')           // logged value is 23.
+    --> console.log(true + '3')        // logged value is true3.
+    --> console.log('4' - '2')         // logged value is 2.
+    --> console.log('siva' - 'raman')  // logged value is NaN (Not a Number).
+    --> console.log('5' - true)        // logged value is 4 (because of true treated as 1).
+    --> console.log('4' - false)       // logged value is 4 (because of false treated as 0).
+    --> console.log('5' - null)        // logged value is 5 (because of null treated as 0).
+    --> console.log(5 + undefined)     // logged value is NaN (Not a Number).
+
+Explicit Conversion:
+1) String,
+2) Number,
+3) parseInt,
+4) parseFloat,
+5) toString() --> this one is same as that of String Explicit conversion and it's not working on null and undefined.
+6) Boolean --> null, undefined, 0, "", NaN these are all given as false in Boolean conversion
+               if you use empty string with space it's return true.
+-------------------------------------------------------------------------------------------------------------------
+Equality:
+
+==  --> it allows coercion.
+=== --> it doesn't allow coercion.
+
+Ex 1: --> 
+var x = 'siva'
+var y = 'siva'
+
+console.log(x == y);    // true.
+console.log(x === y);   // true.
+
+Ex 2: -->
+var x = 10
+var y = '10'
+
+console.log(x == y);    // true.
+console.log(x === y);   // false.
+
+Ex 3: -->
+var x = 0
+var y = ''
+
+console.log(x == y);    // true.
+console.log(x === y);   // false.
+
+Ex 4: -->
+var x = null
+var y = undefined
+
+console.log(x == y);    // true.
+console.log(x === y);   // false.
+-------------------------------------------------------------------------------------------------------------------
+
+Conditional Statement's:
+
+1) if.
+2) else.
+3) else-if.
+4) switch.
+-------------------------------------------------------------------------------------------------------------------
+
+Looping Code:
+
+1) for loop,      ----> for(initializer, condition, final-expression){ // code to run }.
+2) while loop,    ----> initializer; while(condition check){ // code to run, final-expression }; 
+3) do while loop, ----> initializer; do{ // code to run; final-expression }; while(condition check); do loop execute once if the condition is also in fail state.
+4) for of loop,   ----> for ( const iteration of array ){ // code to run };
+5) for in loop.   ----> 
+
+Ex for 5: ---> 
+1) const person = {fname:"John", lname:"Doe", age:25};
+   let text = "";
+   for (let x in person) {
+       text += person[x] + " ";
+   }
+
+2) const cars = ["BMW", "Volvo", "Saab", "Ford"];
+   let text = "";
+   for (let x in cars) {
+       text += cars[x] + " ";
+   }
+-------------------------------------------------------------------------------------------------------------------
+
+Scope:
+
+scope is basically accessibility of variable or visibility of variable.
+
+1) block scope,    ----> inside the block only we are able to access the variable. if you try with accessing the variable from outside it's throwing an Referrence Error.
+2) function scope,
+3) global scope.

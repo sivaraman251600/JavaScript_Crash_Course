@@ -1,0 +1,143 @@
+
+Topics: ------>
+1) Timeout and Intervals,
+2) Callback,
+3) Promises,
+4) async wait,
+5) Event loop.
+===================================================================================================================
+
+Timeout: ---->
+
+JavaScript is a synchronous. block execution and single threaded language.
+JavaScript thread is a simply process that your javaScript program can use to run a task.
+JavaScript has only one thread called main thread for executing the chunk of code.
+JavaScript each thread can do only one task at a time.
+
+setTimeout(): ---->
+
+The setTimeout() function was executed only once after the given time has elapsed.
+
+The setTimeout(function,timeperiod, param1,param2), here the firat parameter accept the callback function or reference function and the second parameter is time period we have to set timing of the function after executes and third and fourth are the parameters pass to the callback function.  
+
+Ex 1: ---> setTimeout() Example
+
+function greet(name){
+console.log(`My Name Is ${name}`) -----> // My Name Is Sivaraman
+}
+setTimeout(greet,2000,"Sivaraman") 
+
+Ex 2: ---> clearTimeout() Example
+
+function greet(name){
+console.log(`My Name Is ${name}`)
+}
+var timeout = setTimeout(greet,2000,"Sivaraman");
+clearTimeout(timeout);
+
+setInterval(): ---->
+
+The setInterval() was executes the code again and again after the specified time period.
+
+The setInterval(function,timeperiod, param1,param2), here the firat parameter accept the callback function or reference function and the second parameter is time period we have to set timing of the function after executes and third and fourth are the parameters pass to the callback function.
+
+Timers and Interval's are not the part of javaScript itself. it was implemented by the browser and setTimeout and setInterval are basic names are given into that functionallity in javaScript.
+
+The duration parameter is minium delay it's not an guaranteed delay. suppose if you give the delay parameter as 2000 means 2s it was the minimum delay it's going to take the 5s also, so the conclusion is when you use the duration parameter it's going to be an minimum delay.
+
+Callbacks: ---->
+
+A function can be passed as an argument to an another function and it return value of another functions. 
+
+Ex 1: ---->
+
+function greet(name){
+console.log(`My Name Is ${name}`) ----->  // My Name Is Sivaraman
+}
+
+function callBack(funcName){
+  const name = "Sivaraman"
+  funcName(name)
+}
+
+callBack(greet);   
+
+Ex 2: ---->
+
+A function which accept another function as an argument and return an functions is called Higher Order Component.
+
+Ex 3: ---->
+
+1) Synchronous Callback,
+2) Asynchronous Callback.
+
+if you use the multiple callback's it's was lead to create the reading and understanding of the code and if you use the callback with nested function it's called callback hell.
+
+we have to neglect these things like callback then the Promises comes into the picture. 
+-------------------------------------------------------------------------------------------------------------------
+
+Promises: ---->
+
+Promises are alternative way of callback and it was rejecting the callback hell.
+
+Promise is simply an object in javaScript.
+
+Promises are kept three stages
+1) Pending : --> it hold an initial State, neither fullfilled nor rejected.
+2) fullfilled: --> the promise was fullfilled it's mean operation completed successfully.
+3) rejected: --> the promise was rejected, it means operation failed.
+
+Promises are help us to deal with the asynchronous operation code in far more simpler way compared to callbacks.
+and we are calling the successFunction and failureFunction based on the promise value only.
+
+Create a Promise: ---->
+ const promise = new Promise().
+
+Create a Fullfill and Reject Promise: ---->
+ const promise = new Promise((resolve, reject)=>{})
+the Promise Constructor was accept one parameter as an function here we pass one parameter as an arrow function, and this arrow function was accept the resove, reject of two parameters, these two parameters are function.
+
+ Callback function are throw an error or exceptions and don't need to write seperate function to handle the error it was done by callback automatically.
+
+Static Methods In Promises: ------->
+
+The Promise.all() ---> it was use to call the callback function when the all promises kept resolved if any one promises was rejected then it's was throw an exception error. and it was given resolved output in an Array format.
+
+The Promise.allSetteled() ---> it was wait for an all promises are successed oe else any on of them is rejected. this one is also gives an output on Array Format based iterable values during iterates.
+
+The Promise.race() -----> returns a promise that fulfills or reject as soon as one of the input promises fulfills or reject with the value or reason from that promises. simply the given promises which one comes first that value has to be printed in the promise.race().
+-------------------------------------------------------------------------------------------------------------------
+
+Async: ---->
+
+Async keyword use to declare the async function in javaScript.
+
+Unlike normal function async function always return the promise value.
+
+Ex 1: ---->
+
+async function greet (){
+  console.log("Promise Check")  ------>   // Promise {<fulfilled>: 'Promise Check'}
+}
+greet();
+
+Async function always return promise. 
+-------------------------------------------------------------------------------------------------------------------
+
+Await: ---->
+
+await keyword can be put infront of any async promise based function to pause the your code until that promise resolved and returns its result.
+
+Ex 1: ---->
+
+async function greet() {
+  let promise = new Promise((resolve, reject) => { 
+  setTimeout(() => resolve("Hello"),1000)})
+  let result = await promise;
+  console.log(result)
+}
+
+greet();  -----> // output: Hello
+-------------------------------------------------------------------------------------------------------------------
+
+Event Loop: ----> Look out the Picture Representation Folder.

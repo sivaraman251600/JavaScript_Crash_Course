@@ -1,0 +1,245 @@
+Neseted Scope:
+
+Ex 1: ---> 
+
+let a = 10;
+function outer () {
+  let b = 20;
+  function inner () {
+    let c = 30;
+    console.log(a, b, c) // logged value is 10, 20, 30.
+  }
+  inner();
+}
+
+outer();
+-------------------------------------------------------------------------------------------------------------------
+Clouser:
+
+Clouser ---> it's return an function definition with scope from another function is called clouser and for this return reason javaScript was able to persist the value between the execution.
+
+Ex 1: --->
+
+function outer () {
+  let b = 20;
+  function inner () {
+    b++;
+    console.log(b)  ( // first logged value 21 // second logged value 22 )
+  }
+  return inner
+}
+var fn = outer();
+fn();
+fn();
+-------------------------------------------------------------------------------------------------------------------
+Function Currying:
+
+Function currying is a programming sequence in that we have to trnasform the main function with multiple arguments into nested functions, this nested functions accepting one argument at the time. 
+
+Ex 1: ---> function add (a, b, c) Transform into =---> function one(a) (b) (c) like this. 
+
+Ex 2: ---> 
+function sum (a,b,c){
+return a + b + c;
+}
+
+function curry(fn){
+return function(a){
+return function(b){
+return function(c){
+return fn(a,b,c)
+}
+}
+}
+}
+
+const curriedSum = curry(sum)
+console.log(curriedSum(2)(3)(5)) // logged value is 10.
+-------------------------------------------------------------------------------------------------------------------
+This:
+
+1) Implicit binding,
+2) explicit binding,
+3) new binding,
+4) default binding.
+
+Implicit Binding Rule: --->
+
+const person = {
+name: "shiva",
+sayMyName: function(){
+console.log(`my name is ${this.name}`) --> 
+// here this keyword represents the object called name and in that object after dot notation it was calling the name.
+}
+}
+
+person.sayMyName()
+
+Explicit Binding Rule: --->
+
+const person = {
+name: "shiva",
+sayMyName: function(){
+console.log(`my name is ${this.name}`) --> 
+// here this keyword represents the object called name and in that object after dot notation it was calling the name.
+}
+}
+
+function explicitCalling(){
+console.log(`My Name Is ${this.name}`)
+}
+
+explicitCalling.call(person) ---> in explicit calling every function inbuild have the call method it was help you to call another object key value pair as an argument to this function.
+
+New Binding Rule: --->
+
+function Person (name) {
+// this = {} 
+---> it was created when the person calling with new keyword.
+this.name = name  
+---> here the this was indicating the this = {} object and followed by dot notation value inside of the object.
+}
+
+const personOne = new Person("Siva")     
+---> this new keyword creates an empty object inside of the Person() function when ever the Person calling with new      keyword.
+const PersonTwo = new Person("Venkatesh")
+
+console.log(personOne.name, personTwo.name);
+
+Default Binding Rule: --->
+
+globalThis.name = "siva"
+function sayMyName(){
+console.log(`My Name Is ${this.name}`) ---> // logged value is My Name Is siva
+}
+
+sayMyName();
+
+here what happen, when i calling the function sayMyName() inside the function we doesn't declare any object so the this keyword search the after dot notation value here is name, so in global scope they are declaring the name value is there or not it's searching suppose is not there it's was given as `My Name Is Undefined` suppose is there then it was giving like `My Name Is Siva`when you using this keyword globalThis keyword.
+
+Order of Precedence: --->
+
+1) New binding,
+2) Explicit binding,
+3) Implicit binding,
+4) Default binding.
+-------------------------------------------------------------------------------------------------------------------
+
+Prototype: ---->
+
+Whenever we create a JavaScript function, JavaScript adds a prototype property to that function. A prototype is an object, where it can add new variables and methods to the existing object.
+
+Ex 1: ---->
+
+function Person(fName, lName){
+this.firstName = fName;
+this.lastName = lName;
+}
+
+const person1 = new Person("Vijayaraghavan","Ramesh")
+const person2 = new Person("Mohan","Prashant")
+
+Person.prototype.getFullName = function(){
+return this.firstName+ " " + this.lastName;
+}
+
+console.log(person1.getFullName()) ---> Vijayaraghavan Ramesh.
+console.log(person2.getFullName()) ---> Mohan Prashant.
+
+Ex 2: ---->
+
+function Person(fName, lName){
+    this.firstName = fName;
+    this.lastName = lName;
+    }
+    
+    Person.prototype.getFullName = function(){
+    return this.firstName+ " " + this.lastName + " Is Super Hero" +" "+ this.isHero
+    }
+    
+    function SuperHero(fName,lName){
+    // this = {}
+    Person.call(this,fName,lName)
+    this.isHero = true
+    }    
+    
+    SuperHero.prototype = Object.create(Person.prototype)
+    
+    const batMan = new SuperHero("Sivaraman","K")
+    
+    console.log(batMan.getFullName());  // Sivaraman K Is Super Hero true.
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+Class Component to Acheive the inheritence by using the extends keyword: --->
+
+class Person{
+    constructor(fName, lName){
+        this.firstName = fName,
+        this.lastName = lName
+    }
+
+    sayMyName(){
+        return this.firstName + " " + this.lastName 
+    }
+}
+
+class SuperHero extends Person{
+    constructor(fName, lName){
+        super(fName, lName)
+        this.isHero = true
+    }
+
+    fightCrime(){
+        console.log("Fight crime")
+    }
+}
+
+const AccessSuperHeroToPersonMethod = new SuperHero("Sivaraman","K")
+console.log(AccessSuperHeroToPersonMethod.sayMyName()); -------->  // Sivaraman K
+
+===================================================================================================================
+
+Iterables And Iterators-Protocols: --->
+
+The for of loop type was works same on different type of data structure iterates like String, Array..
+
+Ex 1: --->
+
+var obj = {
+    [Symbol.iterator]: function(){
+    let step = 0
+    const iterator = {
+        next:function(){
+    step++
+    if(step === 1){
+    return {value:"React", done:false}
+    }
+    else if(step === 2){
+    return {value:"Js", done:false}
+    }
+    return {value:undefined, done: true}
+    }
+    }
+    return iterator
+    }
+}
+
+for (let iterate of obj){
+    console.log(iterate)   // React  // Js
+}
+
+===================================================================================================================
+
+Generators: --->
+
+Generators are stopped the execution and begins with where it's left out using "yield" keyword.
+generator function are like this ---> 
+function* generatorFunction(){
+yield "Hello"
+yield "World"
+}
+
+const generatorObject = generatorFunction();
+for (const word of generatorObject){
+console.log(word);
+}
